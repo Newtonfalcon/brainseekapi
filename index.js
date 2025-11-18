@@ -13,7 +13,7 @@ dotenv.config()
 
 
 const app = express()
-const CLIENT_URL =  "http://10.81.16.249:5173/"
+const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
 
 
 
