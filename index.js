@@ -21,7 +21,7 @@ const allowedOrigins = [
   "https://www.brainseek.vercel.app" 
 ];
 
-/*app.use(
+app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (Postman, server-to-server)
@@ -35,10 +35,8 @@ const allowedOrigins = [
     },
     credentials: true,
   })
-);*/
+);
 
-
-app.use(cors({origin: true, credentials:true}))  
 app.options("*", cors());
 
 
