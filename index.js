@@ -20,6 +20,7 @@ app.use(cors({
   origin:"https://brainseek.vercel.app",
   credentials: true,
 }))
+app.options('*', cors())
 
 /*app.use(cors({
   origin: CLIENT_URL,
