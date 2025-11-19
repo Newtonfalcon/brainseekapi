@@ -37,13 +37,7 @@ const allowedOrigins = [
   })
 );*/
 
-
-app.use(cors({
-  origin: "*",
-  credentials: true,
-  allowedHeaders: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-}))
+app.use(cors({origin:true, credentials:true}))
 
 
 app.options("*", cors());
