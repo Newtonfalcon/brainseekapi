@@ -17,49 +17,16 @@ const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
 
 
 app.use(cors({
-  origin:"https://brainseek.vercel.app",
+  origin:"https://www.brainseek.vercel.app",
   credentials: true,
 }))
 app.options('*', cors())
 
-/*app.use(cors({
-  origin: CLIENT_URL,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['set-cookie']
-}))
 
 
-
-app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
-    if (!origin) return callback(null, true);
-    
-    const allowedOrigins = [CLIENT_URL];
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
-  exposedHeaders: ['set-cookie'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}))
-
-// Handle preflight requests explicitly
-app.options('*', cors())
-
-*/
-
-app.use(cookieParser())
 
 app.use(express.json())
+app.use(cookieParser())
 
 
 
