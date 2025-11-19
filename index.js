@@ -17,7 +17,7 @@ const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
 
 
 app.use(cors({
-  origin:true,
+  origin:CLIENT_URL,
   credentials: true,
 }))
 
