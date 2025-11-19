@@ -16,11 +16,26 @@ const app = express()
 const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
 
 
-app.use(cors({
-  origin:"https://www.brainseek.vercel.app",
-  credentials: true,
-}))
-app.options('*', cors())
+const allowedOrigins = [
+  "https://brainseek.vercel.app",
+  "https://www.brainseek.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (Postman, Curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 
 
