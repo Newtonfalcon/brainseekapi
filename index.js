@@ -37,7 +37,7 @@ const allowedOrigins = [
   })
 );*/
 
-app.use(cors({origin:true}))
+app.use(cors({origin:true, credentials:true}))
 
 
 //app.options("*", cors());
