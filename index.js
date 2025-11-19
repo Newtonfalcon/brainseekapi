@@ -24,8 +24,8 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (Postman, Curl)
-      if (!origin) return callback(null, true);
+      
+      
 
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
@@ -38,7 +38,7 @@ app.use(
 );
 
 
-
+app.options("*", cors())
 
 app.use(express.json())
 app.use(cookieParser())
