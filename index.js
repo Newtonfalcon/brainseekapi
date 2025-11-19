@@ -16,6 +16,10 @@ const app = express()
 const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
 
 
+app.use(cors({
+  origin:true,
+  credentials: true,
+}))
 
 /*app.use(cors({
   origin: CLIENT_URL,
@@ -23,7 +27,7 @@ const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders: ['set-cookie']
-}))*/
+}))
 
 
 
@@ -49,6 +53,8 @@ app.use(cors({
 
 // Handle preflight requests explicitly
 app.options('*', cors())
+
+*/
 
 
 app.use(express.json())
