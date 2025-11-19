@@ -18,13 +18,13 @@ const CLIENT_URL =process.env.CLIENT_URL || "http://localhost:5173"
 
 const allowedOrigins = [
   "https://brainseek.vercel.app",
-  "https://www.brainseek.vercel.app"
+  "https://www.brainseek.vercel.app" 
 ];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (Postman, Curl) ok
+      // Allow requests with no origin (Postman, server-to-server)
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
@@ -37,8 +37,8 @@ app.use(
   })
 );
 
+app.options("*", cors());
 
-app.options("*", cors)
 
 app.use(express.json())
 app.use(cookieParser())
