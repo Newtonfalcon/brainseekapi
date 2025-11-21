@@ -21,7 +21,9 @@ const allowedOrigins = [
 
 // CORS configuration - MUST be before other middleware
 app.use(cors({
-  origin: [CLIENT_URL, ...allowedOrigins],
+  origin: ["https://brainseek.vercel.app",
+  "https://www.brainseek.vercel.app"
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
