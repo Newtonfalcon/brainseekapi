@@ -37,7 +37,7 @@ const allowedOrigins = [
   })
 );*/
 
-app.use(cors({origin:"https://www.brainseek.vercel.app", credentials:true}))
+app.use(cors({origin:["https://www.brainseek.vercel.app", "https://brainseek.vercel.app"], credentials:true}))
 
 
 //app.options("*", cors());
