@@ -16,12 +16,12 @@ const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173"
 const allowedOrigins = [
   "https://brainseek.vercel.app",
   "https://www.brainseek.vercel.app",
-  "http://localhost:5173"
+  
 ];
 
 // CORS configuration - MUST be before other middleware
 app.use(cors({
-  origin: allowedOrigins,
+  origin: [CLIENT_URL, ...allowedOrigins],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
