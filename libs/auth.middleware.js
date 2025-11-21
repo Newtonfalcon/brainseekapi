@@ -1,30 +1,33 @@
-import jwt from "jsonwebtoken"
-import dotenv from "dotenv"
-import User from "../models/user.model.js"
-dotenv.config()
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import User from "../models/user.model.js";
+dotenv.config();
 
 export const authMiddleware = async (req, res, next) => {
-      const token = req.cookies.token
+  try {
+    // Make sure cookie-parser is used in server.js
+    const token = req.cookies?.token;
 
-      try {
-            if(!token){
-                  return res.status(401).json({message: "unauthorized, no auth token"})
-            }
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized: no auth token" });
+    }
 
-            const decoded = jwt.verify(token, process.env.SESSION_SECRET)
-            if(!decoded){
-                  return res.status(401).json({message: "unauthorized, invalid token"})
-            }
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.SESSION_SECRET);
+    } catch (err) {
+      return res.status(401).json({ message: "Unauthorized: invalid or expired token" });
+    }
 
-            const user = await User.findById(decoded.id).select("-password")
-            if(!user){
-                  return res.status(404).json({message: "unauthorized, user not found"})
-            }
+    const user = await User.findById(decoded.id).select("-password");
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized: user not found" });
+    }
 
-            req.user = user
-            next()
-
-      } catch (error) {
-            return res.status(500).json({message: error.message})
-      }
-}
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error("AuthMiddleware Error:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
