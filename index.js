@@ -31,8 +31,7 @@ app.use(cors({
   maxAge: 86400 // 24 hours
 }));
 
-// Handle preflight
-app.options("*", cors());
+
 
 app.use(express.json())
 app.use(cookieParser())
