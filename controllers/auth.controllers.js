@@ -63,13 +63,30 @@ export const login = async (req, res) => {
       
 }
 
-export const logout = (req, res) => {
+/*export const logout = (req, res) => {
       res.cookie("token", "", {
             httpOnly: true,
             expires: new Date(0),
       });
       res.status(200).json({message: "Logged out successfully"});
-}
+}*/
+
+
+export const logout = (req, res) => {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  res.cookie("token", "", {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: "none",
+    path: "/",
+    expires: new Date(0),
+    domain: isProduction ? "brainseek.vercel.app" : undefined
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
+};
+
 
 export const getUser = async (req, res) => {
       
