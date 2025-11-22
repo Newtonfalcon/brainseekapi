@@ -9,15 +9,13 @@ export function setToken(userid, res) {
   const cookieOptions = {
     httpOnly: true,
     secure: true, 
-    sameSite: "None", 
+    sameSite: "none", 
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     path: "/",
   };
 
   
-  if (isProduction) {
-    cookieOptions.domain = ".vercel.app"; 
-  }
+ 
   
   res.cookie("token", token, cookieOptions);
 }

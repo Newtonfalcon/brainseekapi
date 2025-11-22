@@ -77,11 +77,11 @@ export const logout = (req, res) => {
 
   res.cookie("token", "", {
     httpOnly: true,
-    secure: isProduction,
+    secure: true,
     sameSite: "none",
     path: "/",
     expires: new Date(0),
-    domain: isProduction ? "brainseek.vercel.app" : undefined
+    
   });
 
   res.status(200).json({ message: "Logged out successfully" });
