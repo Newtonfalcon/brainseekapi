@@ -15,7 +15,7 @@ const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173"
 
 const allowedOrigins = [
   "https://brainseek.vercel.app",
-  "https://www.brainseek.vercel.app",
+  "https://brainseek-ai-74eq.vercel.app/",
   
 ];
 
